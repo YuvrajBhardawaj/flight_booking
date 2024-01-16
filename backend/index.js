@@ -1,9 +1,11 @@
 import express from "express";
 import mongoose from "mongoose";
 import {getFlights} from './db.js'
+import dotenv from 'dotenv'
 const app=express()
 app.use(express.json())
-const uri='mongodb+srv://yuvrajbhardawaj31018:yuvraj123@cluster0.ftqitxg.mongodb.net/flights'
+dotenv.config()
+const uri=process.env.URI
 mongoose.connect(uri,{
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -19,6 +21,6 @@ app.post('/api/home',async(req,res)=>{
     console.log(data)
     res.send(data)
 })
-app.listen(3000,()=>{
+app.listen(process.env.PORT || 3000,()=>{
     console.log("Server is Online")
 })
