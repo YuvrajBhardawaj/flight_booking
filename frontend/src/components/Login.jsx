@@ -3,7 +3,7 @@ import React from 'react';
 function Login() {
   return (
     <div className='container'>
-      <div className='w-50 w-md-50 mx-auto mt-5 border border-primary px-4 py-5 rounded-5 bg-light bg-opacity-75'>
+      <div className='w-75 w-md-50 mx-auto mt-5 border border-primary px-4 py-5 rounded-5 bg-light bg-opacity-75'>
         <h1 className='text-center'>Login</h1>
         <form>
           <div className="mb-3">

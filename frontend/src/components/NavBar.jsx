@@ -1,12 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-function NavBar() {
+function NavBar(props) {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-body-tertiary opacity-75">
       <div className="container">
         <Link className="navbar-brand" to="/home">
-          <img src="indigo-vector-logo-2022-removebg-preview.png" alt="" width={100} />
+          <img src={props.logo} alt="" width={100} />
         </Link>
         <button
           className="navbar-toggler"

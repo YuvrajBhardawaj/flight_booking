@@ -49,11 +49,11 @@ function Home() {
         <form>
             <div className="mb-3">
                 <label htmlFor="From" className="form-label fs-5 fw-bold">From</label>
-                <input type="text" className="form-control" id="From" aria-describedby="basic-addon1" value={from} required onChange={(e)=>setFrom(e.target.value)}/>
+                <input type="text" className="form-control" id="From" aria-describedby="basic-addon1" value={from} required onChange={(e)=>setFrom(e.target.value.toLowerCase())}/>
             </div>
             <div className="mb-3">
                 <label htmlFor="To" className="form-label fs-5 fw-bold">To</label>
-                <input type="text" className="form-control" id="To" aria-describedby="basic-addon1" value={to} required onChange={(e)=>setTo(e.target.value)}/>
+                <input type="text" className="form-control" id="To" aria-describedby="basic-addon1" value={to} required onChange={(e)=>setTo(e.target.value.toLowerCase())}/>
           </div>
           <button type="submit" className="btn btn-primary" onClick={submitHandle}>Search</button>
         </form>
