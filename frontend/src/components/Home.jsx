@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 function Home() {
     const [flight,setFlights]=useState([])
     const [from,setFrom]=useState('')
@@ -38,6 +39,7 @@ function Home() {
                     <td>{v.arrival}</td>
                     <td>{v.departure}</td>
                     <td>{v.fare}</td>
+                    <td><Link to={`/booking/${v._id}`}><button style={{ backgroundColor: 'orange', color: 'white' }} className='btn px-2 py-1'>Book</button></Link></td>
                 </tr>
             );
             })}
