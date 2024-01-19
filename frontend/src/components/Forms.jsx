@@ -35,7 +35,7 @@ function Forms() {
       </div>
       <div className="col-md-4">
         <label htmlFor="date" className="form-label">Date</label>
-        <input type="date" className="form-control" id="date" onChange={(e)=>{setDate(e.target.value)}}/>
+        <input type="date" className="form-control" id="date" value={date} onChange={(e)=>{setDate(e.target.value)}}/>
       </div>
       <div className="col-md-4">
         <label htmlFor="inputZip" className="form-label">Zip</label>
