@@ -7,6 +7,7 @@ import bcrypt from 'bcrypt'
 
 const app=express()
 app.use(express.json())
+
 dotenv.config()
 const uri=process.env.URI
 mongoose.connect(uri,{
@@ -27,7 +28,13 @@ app.post('/api/home',async(req,res)=>{
 app.post('/api/login',async(req,res)=>{
     const {email,password}=req.body
     const data=await SignIn(email,password)
-    res.send(data)
+    if(data.success){
+        const token=jwt.sign({id:data.id},'MyKey',{expiresIn:'1h'})
+        res.cookie('token',token,{httpOnly:true,maxAge:60*1000})
+        res.send({success:"true",message:"Login Successfull"})
+    }
+    else
+        res.send(data)
 })
 app.post('/api/signup',async(req,res)=>{
     let {name,email,password,phone}=req.body

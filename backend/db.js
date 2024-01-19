@@ -1,4 +1,5 @@
 import {travelDestination, users} from "./models.js"
+import bcrypt from 'bcrypt'
 export async function getFlights(from,to){
     try{
         const data=await travelDestination.find({from:from, to:to})
@@ -9,11 +10,12 @@ export async function getFlights(from,to){
     }
 }
 export async function SignIn(email,password){
-    const data=await users.findOne({email:email,password:password})
-    if(data)
-        return {id:data._id}
+    const data=await users.findOne({email:email})
+    if(data && await bcrypt.compare(password,data.password)){
+        return {success:true,id:data._id}
+    }
     else
-        return {success:"false",message:"User Not Found"}
+        return {success:false,message:"User Not Found"}
 }
 export async function SignUp(name,email,password,phone){
     const exists=await users.findOne({email:email})

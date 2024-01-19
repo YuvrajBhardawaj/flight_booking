@@ -6,7 +6,7 @@ function Login() {
   const submitHandle = (e) => {
     e.preventDefault();
     axios.post('/api/login',{email,password})
-    .then((res)=>console.log(res))
+    .then((res)=>console.log(res.data.message))
     .catch((err)=>console.log(err))
     // Add your form submission logic here
   };
