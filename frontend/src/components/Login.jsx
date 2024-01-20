@@ -8,7 +8,6 @@ function Login() {
     axios.post('/api/login',{email,password})
     .then((res)=>console.log(res.data.message))
     .catch((err)=>console.log(err))
-    // Add your form submission logic here
   };
   return (
     <div className='container'>

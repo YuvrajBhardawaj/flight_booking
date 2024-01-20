@@ -47,6 +47,9 @@ app.post('/api/signup',async(req,res)=>{
         res.send({success:false, message:"Registration Failed"})
     }
 })
+app.post('/api/booking',async(req,res)=>{
+    console.log(req.body)
+})
 app.listen(process.env.PORT || 3000,()=>{
     console.log("Server is Online")
 })

@@ -39,7 +39,7 @@ function Home() {
                     <td>{v.arrival}</td>
                     <td>{v.departure}</td>
                     <td>{v.fare}</td>
-                    <td><Link to={`/booking/${v._id}`}><button style={{ backgroundColor: 'orange', color: 'white' }} className='btn px-2 py-1'>Book</button></Link></td>
+                    <td><Link to={`/booking/${v._id}/${v.fare}`}><button style={{ backgroundColor: 'orange', color: 'white' }} className='btn px-2 py-1'>Book</button></Link></td>
                 </tr>
             );
             })}

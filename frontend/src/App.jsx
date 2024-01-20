@@ -25,7 +25,7 @@ function App() {
         <Route path='/signup' element={<SignUp />} />
         <Route path='/home' element={<Home />} />
         <Route path='/*' element={<_404 />} />
-        <Route path='/booking/:id' element={<Forms/>}/>
+        <Route path='/booking/:id/:rate' element={<Forms/>}/>
       </Routes>
     </div>
   );

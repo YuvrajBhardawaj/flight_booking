@@ -1,4 +1,4 @@
-import {travelDestination, users} from "./models.js"
+import {travelDestination, users, booking} from "./models.js"
 import bcrypt from 'bcrypt'
 export async function getFlights(from,to){
     try{
@@ -24,4 +24,7 @@ export async function SignUp(name,email,password,phone){
     const newUser=new users({name,email,password,phone})
     await newUser.save()
     return {success:"true",message:"User Successfully Registered"}
+}
+export async function bookNow(){
+    
 }
