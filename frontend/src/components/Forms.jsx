@@ -8,11 +8,12 @@ function Forms() {
   const [age, setAge] = useState('');
   const [phone, setPhone] = useState('');
   const [aadhar, setAadhar] = useState('');
+  const [userid,setUserId]=useState("65aa39703498d7a48f0e9d07")
   const [date,setDate] = useState('');
   const submitHandler=(e)=>{
       e.preventDefault()
-      axios.post('/api/booking',{id,name,age,phone,aadhar,date,rate})
-      .then((res)=>console.log(res))
+      axios.post('/api/booking',{id,userid,name,age,phone,aadhar,date,rate})
+      .then((res)=>alert(res.data.message))
       .catch((err)=>console.log(err))
   }
   return (

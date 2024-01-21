@@ -1,6 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
-import {getFlights, SignIn, SignUp} from './db.js'
+import {bookNow, getFlights, SignIn, SignUp} from './db.js'
 import dotenv from 'dotenv'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
@@ -48,7 +48,9 @@ app.post('/api/signup',async(req,res)=>{
     }
 })
 app.post('/api/booking',async(req,res)=>{
-    console.log(req.body)
+    const {id,userid,name,age,phone,aadhar,date,rate}=req.body
+    const data=await bookNow(id,userid,name,age,phone,aadhar,date,rate)
+    res.send(data)
 })
 app.listen(process.env.PORT || 3000,()=>{
     console.log("Server is Online")
