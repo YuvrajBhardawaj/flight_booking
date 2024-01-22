@@ -1,20 +1,30 @@
 import axios from 'axios'
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 function Home() {
+    const navigate=useNavigate()
     const [flight,setFlights]=useState([])
     const [from,setFrom]=useState('')
     const [to,setTo]=useState('')
-    const submitHandle =async (e) => {
+    const submitHandle =(e) => {
         e.preventDefault();
-        await axios.post('/api/home',{from,to})
+        axios.post('/api/home',{from,to})
         .then((res)=>{
             if(res.data.length>0)
                 setFlights(res.data)
         })
         .catch((err)=>console.log(err))
       };
-      
+    const onBookHandle=(id,fare)=>{
+        axios.get('/api/check')
+        .then((res)=>{
+            if(res.data.success)
+                navigate(`/booking/${id}/${fare}`)
+            else
+                alert(res.data.message)
+        })
+        .catch((err)=>console.log(err))
+    }
   return (
     <>
     {
@@ -39,7 +49,7 @@ function Home() {
                     <td>{v.arrival}</td>
                     <td>{v.departure}</td>
                     <td>{v.fare}</td>
-                    <td><Link to={`/booking/${v._id}/${v.fare}`}><button style={{ backgroundColor: 'orange', color: 'white' }} className='btn px-2 py-1'>Book</button></Link></td>
+                    <td><button style={{ backgroundColor: 'orange', color: 'white' }} className='btn px-2 py-1' onClick={()=>onBookHandle(v._id,v.fare)}>Book</button></td>
                 </tr>
             );
             })}

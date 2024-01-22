@@ -1,6 +1,28 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 function NavBar(props) {
+  const [checkUser,setCheckUser]=useState(false)
+  const [id,setId]=useState('')
+  useEffect(() => {
+    checkUserStatus();
+    setInterval(checkUserStatus, 2000);
+  }, []); 
+
+  const checkUserStatus = () => {
+    axios.get('/api/check')
+      .then((res) => {
+        if (res.data.success) {
+          setId(res.data.id);
+          setCheckUser(res.data.success);
+        }
+        else{
+          setCheckUser(false)
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-body-tertiary opacity-75">
       <div className="container">
@@ -18,6 +40,7 @@ function NavBar(props) {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
+        {checkUser?<h4>ID : {id}</h4>:
         <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
@@ -31,7 +54,7 @@ function NavBar(props) {
               </Link>
             </li>
           </ul>
-        </div>
+        </div>}
       </div>
     </nav>
   );

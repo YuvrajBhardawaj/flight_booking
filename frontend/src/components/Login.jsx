@@ -1,12 +1,18 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import {useNavigate} from 'react-router-dom'
 function Login() {
+  const navigate=useNavigate()
   const [email,setEmail]=useState("")
   const [password,setPassword]=useState("")
   const submitHandle = (e) => {
     e.preventDefault();
     axios.post('/api/login',{email,password})
-    .then((res)=>console.log(res.data.message))
+    .then((res)=>{
+      alert(res.data.message)
+      if(res.data.success)
+        navigate('/home')
+    })
     .catch((err)=>console.log(err))
   };
   return (
