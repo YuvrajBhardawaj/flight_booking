@@ -25,6 +25,14 @@ function NavBar(props) {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-body-tertiary opacity-75">
+      {checkUser?
+      <div className="container">
+        <Link className="navbar-brand" to="/home">
+          <img src={props.logo} alt="" width={100} />
+        </Link>
+        <h4>ID : {id}</h4>
+      </div>
+      :
       <div className="container">
         <Link className="navbar-brand" to="/home">
           <img src={props.logo} alt="" width={100} />
@@ -40,7 +48,7 @@ function NavBar(props) {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        {checkUser?<h4>ID : {id}</h4>:
+        
         <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
@@ -54,8 +62,8 @@ function NavBar(props) {
               </Link>
             </li>
           </ul>
-        </div>}
-      </div>
+        </div>
+      </div>}
     </nav>
   );
 }

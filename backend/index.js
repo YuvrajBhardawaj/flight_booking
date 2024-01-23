@@ -60,7 +60,7 @@ app.post('/api/booking',async(req,res)=>{
 app.get('/api/check',async(req,res)=>{
     const token=req.cookies.MyJWT
     const data=await verify(token)
-    console.log(data)
+    //console.log(data)
     res.send(data)
 })
 app.listen(process.env.PORT || 3000,()=>{

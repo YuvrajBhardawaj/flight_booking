@@ -8,6 +8,7 @@ import Home from './components/Home';
 import Forms from './components/Forms';
 import bgImg from '/bg.webp'
 import logo from '/logo.png'
+import { useEffect } from 'react';
 function App() {
   const appStyle = {
     backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url(${bgImg})`,
@@ -16,7 +17,6 @@ function App() {
     // Add other styles as needed
     height: '100vh', // Set a height for the container, adjust as needed
   };
-
   return (
     <div style={appStyle}>
       <NavBar logo={logo}/>
