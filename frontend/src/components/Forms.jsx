@@ -1,19 +1,35 @@
 import axios from 'axios';
-import React, { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
 
 function Forms() {
+  const navigate=useNavigate()
   const {id,rate}=useParams()
   const [name, setName] = useState('');
   const [age, setAge] = useState('');
   const [phone, setPhone] = useState('');
   const [aadhar, setAadhar] = useState('');
-  const [userid,setUserId]=useState("65aa39703498d7a48f0e9d07")
+  const [userid,setUserId]=useState("")
   const [date,setDate] = useState('');
+  useEffect(()=>{
+    axios.get('/api/check')
+    .then((res)=>{
+      if(res.data.success)
+        setUserId(res.data.id)
+      else{
+        alert("Login Again")
+        navigate('/home')
+      }
+    })
+    .catch((err)=>console.log(err))
+  })
   const submitHandler=(e)=>{
       e.preventDefault()
       axios.post('/api/booking',{id,userid,name,age,phone,aadhar,date,rate})
-      .then((res)=>alert(res.data.message))
+      .then((res)=>{
+        alert(res.data.message)
+        navigate('/home')  
+        })
       .catch((err)=>console.log(err))
   }
   return (
@@ -28,7 +44,7 @@ function Forms() {
       <fieldset className='col-md-6' disabled >
         <div>
           <label htmlFor="userId" className="form-label">UserID</label>
-          <input type="text" id="userId" className="form-control" defaultValue={"65aa39703498d7a48f0e9d07"}/>
+          <input type="text" id="userId" className="form-control" defaultValue={userid}/>
         </div>
       </fieldset>
       <div className="col-md-4">
