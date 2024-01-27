@@ -30,7 +30,7 @@ function NavBar(props) {
         <Link className="navbar-brand" to="/home">
           <img src={props.logo} alt="" width={100} />
         </Link>
-        <h4>ID : {id}</h4>
+        <h4><Link to={"/profile"}>ID : {id}</Link></h4>
       </div>
       :
       <div className="container">

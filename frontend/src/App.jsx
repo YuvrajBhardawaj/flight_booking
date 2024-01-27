@@ -9,13 +9,13 @@ import Forms from './components/Forms';
 import bgImg from '/bg.webp'
 import logo from '/logo.png'
 import { useEffect } from 'react';
+import Profile from './components/Profile';
 function App() {
   const appStyle = {
     backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url(${bgImg})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    // Add other styles as needed
-    height: '100vh', // Set a height for the container, adjust as needed
+    height: '100vh',
   };
   return (
     <div style={appStyle}>
@@ -25,6 +25,7 @@ function App() {
         <Route path='/signup' element={<SignUp />} />
         <Route path='/home' element={<Home />} />
         <Route path='/*' element={<_404 />} />
+        <Route path='/profile' element={<Profile/>}/>
         <Route path='/booking/:id/:rate' element={<Forms/>}/>
       </Routes>
     </div>
